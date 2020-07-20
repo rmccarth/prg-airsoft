@@ -64,11 +64,11 @@ async def run():
     square_coordinates = calculate_square(init_latitude, init_longitude, .0001)
 
     mission_items = []
-    mission_items.append(MissionItem(init_latitude, init_longitude, 100, 5, True, float('nan'), float('nan'), MissionItem.CameraAction.NONE, float('nan'), float('nan')))
+    mission_items.append(MissionItem(init_latitude, init_longitude, 20, 5, True, float('nan'), float('nan'), MissionItem.CameraAction.NONE, float('nan'), float('nan')))
     for key in square_coordinates.keys():
         latitude = square_coordinates[key][0]
         longitude = square_coordinates[key][1]
-        mission_items.append(MissionItem(latitude, longitude, 100, 5, False, float('nan'), float('nan'), MissionItem.CameraAction.TAKE_PHOTO, float('nan'), float('nan')))
+        mission_items.append(MissionItem(latitude, longitude, 20, 5, False, float('nan'), float('nan'), MissionItem.CameraAction.TAKE_PHOTO, float('nan'), float('nan')))
 
     mission_plan = MissionPlan(mission_items)
     await drone.mission.set_return_to_launch_after_mission(True)
