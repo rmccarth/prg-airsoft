@@ -60,10 +60,6 @@ async def run():
         init_latitude = position.latitude_deg
         init_longitude = position.longitude_deg
         break
-    
-    print("-- Arming")
-    await drone.action.arm()
-
 
     square_coordinates = calculate_square(init_latitude, init_longitude, .0001)
 
@@ -77,17 +73,12 @@ async def run():
     mission_plan = MissionPlan(mission_items)
     await drone.mission.set_return_to_launch_after_mission(True)
     await drone.mission.upload_mission(mission_plan)
+    print("-- Arming and Launching Mission")
+    await drone.action.arm()
     await drone.mission.start_mission()
-
-    return init_latitude, init_longitude, drone
-
-async def land():
-
-    print("-- RTB")
-    await drone.action.return_to_launch()
 
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    init_latitude, init_longitude, drone = loop.run_until_complete(run())
+    loop.run_until_complete(run())
     
