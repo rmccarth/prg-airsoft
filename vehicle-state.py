@@ -1,3 +1,4 @@
+#obtained from: https://github.com/mavlink/MAVSDK-Python to aid in testing the initial configuration of mavsdk
 from dronekit import connect, VehicleMode
 import time
 
